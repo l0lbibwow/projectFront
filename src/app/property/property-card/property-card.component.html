@@ -1,24 +1,20 @@
 
-<div class="row">
-  <div class="shadow-lg col-sm-4 p-3">
   <div class="card">
     <div class="card-img-wrapper">
-      <img class="card-img-top" [src]="Property.image" alt="">
+      <img class="card-img-top" [src]="property.image" alt="">
+      <ul class="list-inline p-2 text-center member-icons animate">
+        <li class="list-inline-item">
+          <button class="btn btn-primary"><i class="fas fa-edit"></i></button>
+        </li>
+        <li class="list-inline-item">
+          <button class="btn btn-primary"><i class="far fa-id-badge"></i></button>
+        </li>
+      </ul>
     </div>
     <div class="card-body p-1">
-      <h2>{{Property.Name}}</h2>
-      <h3>{{Property.Type}}</h3>
-      <h4>{{Property.Price}}</h4>
+      <h2>{{property.Name}}</h2>
+      <h3>{{property.Type}}</h3>
+      <h4>{{property.Price}}</h4>
     </div>
-    <ul class="list-inline p-2">
-      <li class="list-inline-item">
-        <button class="btn btn-info  btn-sm">Детали</button>
-      </li>
-      <li class="list-inline-item">
-        <button class="btn btn-info  btn-sm">Добавить в корзину</button>
-      </li>
-    </ul>
   </div>
-  </div>
-</div>
 

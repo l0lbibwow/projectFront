@@ -1,0 +1,37 @@
+[
+  {
+  "Id": 1,
+  "Name":"Birla House",
+  "Type": "House",
+  "Price": 12000,
+  "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRw2NvWocmBVjNMBI2JaS7Nqga-K9qX_k4RJQ&usqp=CAU"
+  },
+  {
+  "Id": 2,
+  "Name":"White House",
+  "Type": "House",
+  "Price": 14300,
+  "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRw2NvWocmBVjNMBI2JaS7Nqga-K9qX_k4RJQ&usqp=CAU"
+  },
+  {
+  "Id": 3,
+  "Name":"Macro House",
+  "Type": "House",
+  "Price": 15000,
+  "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRw2NvWocmBVjNMBI2JaS7Nqga-K9qX_k4RJQ&usqp=CAU"
+  },
+  {
+  "Id": 4,
+  "Name":"Pearl House",
+  "Type": "House",
+  "Price": 12000,
+  "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRw2NvWocmBVjNMBI2JaS7Nqga-K9qX_k4RJQ&usqp=CAU"
+  },
+  {
+  "Id": 5,
+  "Name":"Black House",
+  "Type": "House",
+  "Price": 12000,
+  "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRw2NvWocmBVjNMBI2JaS7Nqga-K9qX_k4RJQ&usqp=CAU"
+  }
+]
