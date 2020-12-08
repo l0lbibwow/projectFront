@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="/">Housing</a>
+  <a class="navbar-brand" routerLinkActive="active" routerLink="/">Housing</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -8,18 +8,41 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Купить <span class="sr-only">(current)</span></a>
+        <a class="nav-link" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active" routerLink="/">Купить <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/">Продавать</a>
+        <a class="nav-link"  routerLinkActive="active" routerLink="/rent-property">Продавать</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/">Список домов</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/add-property">Добавить информацию о доме</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+      <ul class="nav navbar-nav  my-2 my-lg-0">
+        <li *ngIf="!loggedIn()" class="nav-item">
+          <a class="nav-link" routerLink="user/register" routerLinkActive="active">Регистрация</a>
+        </li>
+        <li *ngIf="!loggedIn()" class="nav-item">
+          <a class="nav-link" routerLink="user/login" routerLinkActive="active">Войти</a>
+        </li>
+          <div *ngIf="loggedIn()" class="dropdown mr-2" dropdown>
+              <a href="#" class="dropdown-toggle text-light" dropdownToggle (click)="false">
+                Добро пожаловать {{loggedinUser}}
+              </a>
+            <div class="dropdown-menu" *dropdownMenu>
+                <a href="#" class="dropdown-item">
+                  <i class="fas fa-tachometer-alt"></i>Просмотр панели мониторинга
+                </a>
+                <a href="#" class="dropdown-item">
+                  <i class="fas fa-user-circle"></i>Мой профиль
+                </a>
+                <a href="#" class="dropdown-item">
+                  <i class="fas fa-key"></i>Изменить пароль
+                </a>
+                <a href="#" class="dropdown-item">
+                  <i class="fas fa-sign-out-alt"></i>Выйти
+                </a>
+            </div>
+          </div>
+      </ul>
   </div>
 </nav>

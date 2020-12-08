@@ -1,0 +1,31 @@
+
+<div class="card">
+  <div class="card-header">
+    Добавить новый дом
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit(Form)" #Form = "ngForm">
+      <div class="form-group col-12">
+        <label for="name">Название</label>
+        <input type="text" class="form-control" #propName = "ngModel" ngModel name="Name" required minlength="5">
+        <span *ngIf = "propName.invalid && propName.touched" class="error-block">
+          <span *ngIf="propName.errors.required">Пожалуйста заполните имя</span>
+          <span *ngIf="propName.errors.minlength">Имя должно быть не меньше 5 символов</span>
+        </span>
+      </div>
+      <div class="form-group col-12">
+        <label for="type">Тип</label>
+        <input type="text" class="form-control" #propType = "ngModel" ngModel name="Type" required>
+      </div>
+      <div class="form-group col-12">
+        <label for="price">Цена</label>
+        <input type="text" class="form-control" #propPrice = "ngModel" ngModel name="Price" required>
+      </div>
+      <div class="form-group col-12">
+        <button [disabled]="Form.invalid" type="submit" class="btn btn-primary mr-2">Сохранить</button>
+        <button type="submit" class="btn btn-primary">Отмена</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- <button (click)="onBack()" class="btn btn-primary">Назад</button> -->
