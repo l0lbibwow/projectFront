@@ -4,33 +4,25 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
-
+import { routerComponents } from './app-routing.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PropertyCardComponent } from './property/property-card/property-card.component';
-import { PropertyListComponent } from './property/property-list/property-list.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { HousingService } from './services/housing.service';
-import { AddPropertyComponent } from './property/add-property/add-property.component';
-import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { UserLoginComponent } from './user/user-login/user-login.component';
-import { UserRegisterComponent } from './user/user-register/user-register.component';
 import { UserService } from './services/user.service';
 import { AlertifyService } from './services/alertify.service';
 import { AuthService } from './services/auth.service';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 @NgModule({
   declarations: [
     AppComponent,
     PropertyCardComponent,
-    PropertyListComponent,
     MenuBarComponent,
-    AddPropertyComponent,
-    PropertyDetailComponent,
-    PageNotFoundComponent,
-    UserLoginComponent,
-    UserRegisterComponent,
+    routerComponents
   ],
   imports: [
     BrowserModule,
@@ -39,7 +31,10 @@ import { AuthService } from './services/auth.service';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
+    ButtonsModule.forRoot(),
+    BsDatepickerModule.forRoot(),
   ],
   providers: [HousingService, UserService, AlertifyService, AuthService],
   bootstrap: [AppComponent]

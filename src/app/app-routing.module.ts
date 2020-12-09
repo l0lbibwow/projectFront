@@ -21,3 +21,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+export const routerComponents = [AddPropertyComponent, PropertyDetailComponent, PropertyListComponent,PageNotFoundComponent,UserLoginComponent,UserRegisterComponent]

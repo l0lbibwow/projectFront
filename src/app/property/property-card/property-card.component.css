@@ -2,6 +2,14 @@
   overflow: hidden;
   position: relative;
 }
+.card-body h1 {
+  font-family: fantasy;
+  color: #0069d9;
+}
+.font-highlight {
+  color: red;
+  font-style: italic;
+}
 .card:hover img {
   transform: scale(1.2, 1.2);
   transition-duration: 500ms;
@@ -29,4 +37,7 @@
 }
 .animate {
   transition: all 0.3s ease-in-out;
+}
+.card {
+  min-height: 400px;
 }

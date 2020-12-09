@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { IProperty } from '../property/IProperty.interface';
+import { IProperty } from 'src/app/shared/iproperty';
 import { Observable } from 'rxjs';
+import { Property } from '../shared/property';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,9 @@ export class HousingService {
         return propertiesArray;
       })
    );
+   return this.http.get<IProperty[]>('data/properties.json');
+  }
+  addProperty(property: Property) {
+    localStorage.setItem('newProp', JSON.stringify(property));
   }
 }
