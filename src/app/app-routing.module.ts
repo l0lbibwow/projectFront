@@ -6,10 +6,11 @@ import { PropertyListComponent } from './property/property-list/property-list.co
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
+import { ProductDetailResolverService } from './property/property-detail/product-detail-resolver.service';
 const routes: Routes = [
   { path: '', component: PropertyListComponent},
   {path: 'rent-property', component: PropertyListComponent},
-  {path: 'property-detail/:id', component: PropertyDetailComponent},
+  {path: 'property-detail/:id', component: PropertyDetailComponent, resolve: {prp: ProductDetailResolverService}},
   { path: 'add-property', component: AddPropertyComponent},
    {path: 'user/login', component: UserLoginComponent},
   { path: 'user/register', component: UserRegisterComponent},

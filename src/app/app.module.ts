@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 import { routerComponents } from './app-routing.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,12 +18,17 @@ import { UserService } from './services/user.service';
 import { AlertifyService } from './services/alertify.service';
 import { AuthService } from './services/auth.service';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { ProductDetailResolverService } from './property/property-detail/product-detail-resolver.service';
+import { FilterPipe } from './Pipes/filter.pipe';
+import { SortPipe } from './Pipes/sort.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     PropertyCardComponent,
     MenuBarComponent,
-    routerComponents
+    routerComponents,
+    FilterPipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,
@@ -35,8 +41,9 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     TabsModule.forRoot(),
     ButtonsModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    NgxGalleryModule
   ],
-  providers: [HousingService, UserService, AlertifyService, AuthService],
+  providers: [HousingService, UserService, AlertifyService, AuthService, ProductDetailResolverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
