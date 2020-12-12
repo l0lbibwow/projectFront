@@ -21,6 +21,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { ProductDetailResolverService } from './property/property-detail/product-detail-resolver.service';
 import { FilterPipe } from './Pipes/filter.pipe';
 import { SortPipe } from './Pipes/sort.pipe';
+import { BoldDirective } from './bold.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import { SortPipe } from './Pipes/sort.pipe';
     MenuBarComponent,
     routerComponents,
     FilterPipe,
-    SortPipe
+    SortPipe,
+    BoldDirective
   ],
   imports: [
     BrowserModule,

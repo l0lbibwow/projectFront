@@ -1,5 +1,21 @@
+<label>Фильтрация по городам: &nbsp; </label>
+<input [(ngModel)]='City'>
+<button type="button" (click)="onCityFilter()" class="btn btn-outline-info">Искать</button>
+<button type="button" (click)="onCityFilterClear()" class="btn btn-outline-info">Очистить</button> &nbsp;
+
+<label>Сортировка по &nbsp;</label>
+<select [(ngModel)]='SortbyParam'>
+  <option value="City">Городам</option>
+  <option value="Price">Цене</option>
+</select>
+<button type="button" (click)="onSortDirection()">
+  <i *ngIf="SortDirection==='asc'" class="fas fa-sort-alpha-down"></i>
+  <i *ngIf="SortDirection==='desc'" class="fas fa-sort-alpha-up"></i>
+</button>
 <div class="row">
-  <div *ngFor="let property of Properties" class="shadow-lg col-sm-4 p-3">
-    <app-property-card [property]="property"></app-property-card>
+  <div *ngFor="let property of Properties|filter:SearchCity:'City'|sort:[SortbyParam,SortDirection]" class="col-sm-4">
+    <div class="shadow-lg p-3 mb-4">
+      <app-property-card [property]="property"></app-property-card>
+    </div>
   </div>
 </div>

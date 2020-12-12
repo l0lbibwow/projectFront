@@ -18,11 +18,12 @@ export class AddPropertyComponent implements OnInit {
   @ViewChild('formTabs') formTabs: TabsetComponent;
   property = new Property();
   addPropertyForm: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router,private housingService: HousingService, private alertify: AlertifyService) { }
-  propertyTypes: Array<string> = ['Дом', "Квартира","Дуплекс"];
-  furnishTypes: Array<string> = ['полностью', "полу", 'немеблированный'];
+  constructor(private fb: FormBuilder, private router: Router, private housingService: HousingService, private alertify: AlertifyService) { }
+  propertyTypes: Array<string> = ['Дом', "Квартира","Многоэтажный"];
+  furnishTypes: Array<string> = ['Полностью', "Полу", 'Немеблированный'];
   Direction: Array<string> = ['Запад','Север','Юг','Восток'];
 nextClicked: boolean;
+cityList: any[];
   propertyView: IPropertyBase = {
     Id: null,
     Name:'',
@@ -32,12 +33,16 @@ nextClicked: boolean;
     FType: null,
     BHK:null,
     BuiltArea: null,
-    City: null,
+    City:'',
     RTM: null
   };
 
   ngOnInit(): void {
     this.CreatedAddPropertyForm();
+    this.housingService.getAllCities().subscribe(data => {
+      this.cityList = data;
+      console.log(data);
+    })
   }
   CreatedAddPropertyForm(){
     this.addPropertyForm = this.fb.group({
