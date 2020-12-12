@@ -61,27 +61,12 @@ cityList: any[];
 
       PriceInfo: this.fb.group({
         Price: [null, Validators.required],
-        BuiltArea: [null, Validators.required],
-        CarpetArea: [null],
-        Security: [null],
-        Maintenance: [null],
+        BuiltArea: [null, Validators.required]
       }),
 
       AddressInfo: this.fb.group({
-        FloorNo: [null],
-        TotalFloor: [null],
         Address: [null, Validators.required],
-        LandMark: [null],
       }),
-
-      OtherInfo: this.fb.group({
-        RTM: [null, Validators.required],
-        PossessionOn: [null],
-        AOP: [null],
-        Gated: [null],
-        MainEntrance: [null],
-        Description: [null]
-      })
     });
   }
 
