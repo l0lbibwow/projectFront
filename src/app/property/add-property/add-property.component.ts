@@ -43,6 +43,10 @@ cityList: any[];
       this.cityList = data;
       console.log(data);
     })
+    this.housingService.getProperties().subscribe(data => {
+      //this.cityList = data;
+      console.log(data);
+    })
   }
   CreatedAddPropertyForm(){
     this.addPropertyForm = this.fb.group({
@@ -165,18 +169,6 @@ get BasicInfo() {
         return this.OtherInfo.controls.PossessionOn as FormControl;
       }
 
-      get AOP() {
-        return this.OtherInfo.controls.AOP as FormControl;
-      }
-
-      get Gated() {
-        return this.OtherInfo.controls.Gated as FormControl;
-      }
-
-      get MainEntrance() {
-        return this.OtherInfo.controls.MainEntrance as FormControl;
-      }
-
       get Description() {
         return this.OtherInfo.controls.Description as FormControl;
       }
@@ -218,9 +210,6 @@ get BasicInfo() {
     this.property.Address = this.Address.value;
     this.property.Address2 = this.LandMark.value;
     this.property.RTM = this.RTM.value;
-    this.property.AOP = this.AOP.value;
-    this.property.Gated = this.Gated.value;
-    this.property.MainEntrance = this.MainEntrance.value;
     this.property.Possession = this.PossessionOn.value;
     this.property.Description = this.Description.value;
     this.property.PostedOn = new Date().toString();

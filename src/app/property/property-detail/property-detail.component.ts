@@ -54,6 +54,16 @@ galleryOptions: NgxGalleryOptions[];
         small: 'https://www.thespruce.com/thmb/8RCePpPsuO0_68hbfw3a0ZLY1sc=/2121x1193/smart/filters:no_upscale()/Whitemodernkitchen-GettyImages-1089101352-4eddd67a46984affa521c889b02c5bf1.jpg',
         medium: 'https://www.thespruce.com/thmb/8RCePpPsuO0_68hbfw3a0ZLY1sc=/2121x1193/smart/filters:no_upscale()/Whitemodernkitchen-GettyImages-1089101352-4eddd67a46984affa521c889b02c5bf1.jpg',
         big: 'https://www.thespruce.com/thmb/8RCePpPsuO0_68hbfw3a0ZLY1sc=/2121x1193/smart/filters:no_upscale()/Whitemodernkitchen-GettyImages-1089101352-4eddd67a46984affa521c889b02c5bf1.jpg'
+      },
+      {
+        small: 'https://astkt-photos-kr.kcdn.kz/webp/44/444f74e0-0f27-4117-a511-eb57a5626389/14-750x470.webp',
+        medium: 'https://astkt-photos-kr.kcdn.kz/webp/44/444f74e0-0f27-4117-a511-eb57a5626389/14-750x470.webp',
+        big: 'https://astkt-photos-kr.kcdn.kz/webp/44/444f74e0-0f27-4117-a511-eb57a5626389/14-750x470.webp'
+      },
+      {
+        small:'https://astkt-photos-kr.kcdn.kz/webp/44/444f74e0-0f27-4117-a511-eb57a5626389/8-full.webp',
+        medium:'https://astkt-photos-kr.kcdn.kz/webp/44/444f74e0-0f27-4117-a511-eb57a5626389/8-full.webp',
+        big:'https://astkt-photos-kr.kcdn.kz/webp/44/444f74e0-0f27-4117-a511-eb57a5626389/8-full.webp',
       }
     ];
   }
