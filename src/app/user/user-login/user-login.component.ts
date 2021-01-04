@@ -1,4 +1,3 @@
-import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
@@ -24,7 +23,7 @@ export class UserLoginComponent implements OnInit {
       this.alertify.success('Login Successful');
       this.router.navigate(['/']);
     } else {
-      this.alertify.success('Login not Successful');
+      this.alertify.error('User id or password is wrong');
     }
   }
 }
