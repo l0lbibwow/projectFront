@@ -21,7 +21,7 @@ export class AddPropertyComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private housingService: HousingService, private alertify: AlertifyService) { }
   propertyTypes: Array<string> = ['Дом', "Квартира","Многоэтажный"];
   furnishTypes: Array<string> = ['Полностью', "Полу", 'Немеблированный'];
-  Direction: Array<string> = ['Запад','Север','Юг','Восток'];
+ // Direction: Array<string> = ['Запад','Север','Юг','Восток'];
 nextClicked: boolean;
 cityList: any[];
   propertyView: IPropertyBase = {
@@ -70,7 +70,7 @@ cityList: any[];
     });
   }
 
-get BasicInfo() {
+      get BasicInfo() {
         return this.addPropertyForm.controls.BasicInfo as FormGroup;
       }
 
@@ -80,10 +80,6 @@ get BasicInfo() {
 
       get AddressInfo() {
         return this.addPropertyForm.controls.AddressInfo as FormGroup;
-      }
-
-      get OtherInfo() {
-        return this.addPropertyForm.controls.OtherInfo as FormGroup;
       }
 
       get SellRent() {
@@ -118,44 +114,8 @@ get BasicInfo() {
         return this.PriceInfo.controls.BuiltArea as FormControl;
       }
 
-      get CarpetArea() {
-        return this.PriceInfo.controls.CarpetArea as FormControl;
-      }
-
-      get Security() {
-        return this.PriceInfo.controls.Security as FormControl;
-      }
-
-      get Maintenance() {
-        return this.PriceInfo.controls.Maintenance as FormControl;
-      }
-
-      get FloorNo() {
-        return this.AddressInfo.controls.FloorNo as FormControl;
-      }
-
-      get TotalFloor() {
-        return this.AddressInfo.controls.TotalFloor as FormControl;
-      }
-
       get Address() {
         return this.AddressInfo.controls.Address as FormControl;
-      }
-
-      get LandMark() {
-        return this.AddressInfo.controls.LandMark as FormControl;
-      }
-
-      get RTM() {
-        return this.OtherInfo.controls.RTM as FormControl;
-      }
-
-      get PossessionOn() {
-        return this.OtherInfo.controls.PossessionOn as FormControl;
-      }
-
-      get Description() {
-        return this.OtherInfo.controls.Description as FormControl;
       }
   onSubmit(): any{
     this.nextClicked = true;
@@ -186,17 +146,8 @@ get BasicInfo() {
     this.property.City = this.City.value;
     this.property.FType = this.FType.value;
     this.property.Price = this.Price.value;
-    this.property.Security = this.Security.value;
-    this.property.Maintenance = this.Maintenance.value;
     this.property.BuiltArea = this.BuiltArea.value;
-    this.property.CarpetArea = this.CarpetArea.value;
-    this.property.FloorNo = this.FloorNo.value;
-    this.property.TotalFloor = this.TotalFloor.value;
     this.property.Address = this.Address.value;
-    this.property.Address2 = this.LandMark.value;
-    this.property.RTM = this.RTM.value;
-    this.property.Possession = this.PossessionOn.value;
-    this.property.Description = this.Description.value;
     this.property.PostedOn = new Date().toString();
   }
    allTabsValid(): boolean {
@@ -212,11 +163,6 @@ get BasicInfo() {
 
     if (this.AddressInfo.invalid) {
       this.formTabs.tabs[2].active = true;
-      return false;
-    }
-
-    if (this.OtherInfo.invalid) {
-      this.formTabs.tabs[3].active = true;
       return false;
     }
     return true;
