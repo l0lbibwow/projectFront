@@ -22,6 +22,9 @@ import { ProductDetailResolverService } from './property/property-detail/product
 import { FilterPipe } from './Pipes/filter.pipe';
 import { SortPipe } from './Pipes/sort.pipe';
 import { BoldDirective } from './bold.directive';
+import { UsersComponent } from './user/users/users.component';
+import { UserCardComponent } from './user/user-card/user-card.component';
+import { UserDetailComponent } from './user/user-detail/user-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +33,10 @@ import { BoldDirective } from './bold.directive';
     routerComponents,
     FilterPipe,
     SortPipe,
-    BoldDirective
+    BoldDirective,
+    UsersComponent,
+    UserCardComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,

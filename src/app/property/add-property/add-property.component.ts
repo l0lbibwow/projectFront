@@ -21,7 +21,6 @@ export class AddPropertyComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private housingService: HousingService, private alertify: AlertifyService) { }
   propertyTypes: Array<string> = ['Дом', "Квартира","Многоэтажный"];
   furnishTypes: Array<string> = ['Полностью', "Полу", 'Немеблированный'];
- // Direction: Array<string> = ['Запад','Север','Юг','Восток'];
 nextClicked: boolean;
 cityList: any[];
   propertyView: IPropertyBase = {
@@ -117,28 +116,26 @@ cityList: any[];
       get Address() {
         return this.AddressInfo.controls.Address as FormControl;
       }
-  onSubmit(): any{
+  onSubmit(): void{
     this.nextClicked = true;
     if (this.allTabsValid()) {
       this.mapProperty();
       this.housingService.addProperty(this.property);
       this.alertify.success('Congrats, your property listed successfully on our website');
-      console.log(this.addPropertyForm);
+     // console.log(this.addPropertyForm);
 
       if(this.SellRent.value === '2') {
         this.router.navigate(['/rent-property']);
       } else {
         this.router.navigate(['/']);
       }
-
-
     } else {
       this.alertify.error('Please review the form and provide all valid entries');
     }
   }
 
    mapProperty(): void {
-     this.property.Id = this.housingService.newPropID();
+    this.property.Id = this.housingService.newPropID();
     this.property.SellRent = +this.SellRent.value;
     this.property.BHK = this.BHK.value;
     this.property.PType = this.PType.value;
@@ -148,7 +145,6 @@ cityList: any[];
     this.property.Price = this.Price.value;
     this.property.BuiltArea = this.BuiltArea.value;
     this.property.Address = this.Address.value;
-    this.property.PostedOn = new Date().toString();
   }
    allTabsValid(): boolean {
     if (this.BasicInfo.invalid) {

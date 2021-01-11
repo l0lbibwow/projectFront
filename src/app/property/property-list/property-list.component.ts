@@ -10,7 +10,7 @@ import { Property } from 'src/app/shared/property';
   styleUrls: ['./property-list.component.css']
 })
 export class PropertyListComponent implements OnInit {
-SellRent = 1;
+  SellRent = 1;
   constructor(private route: ActivatedRoute, private housingService: HousingService) { }
   Properties: Array<Property>;
   Today = new Date()

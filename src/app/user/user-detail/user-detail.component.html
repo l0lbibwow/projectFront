@@ -2,24 +2,25 @@
   <div class="col-6 m-auto">
     <div class="card m-auto">
       <div class="card-header">
-        Регистрация
+        Регистрация {{user.userName}}
       </div>
       <div class="card-body">
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                    <div class="form-group col-12">
-                      <label for="mobile" class="form-label">Ваша роль</label><br>
-                      <div class="btn-group" btnRadioGroup formControlName="role">
-                        <label class="btn btn-outline-primary" btnRadio=user tabindex="0" role="button" name="Role">User</label>
-                        <label class="btn btn-outline-primary" btnRadio=moder tabindex="0" role="button" name="Role">Moderator</label>
-                        <label class="btn btn-outline-primary" btnRadio=admin tabindex="0" role="button" name="Role">Admin</label>
-                      </div>
-                      <span *ngIf="role.invalid && (role.touched || userSubmitted)" class="error-block">
-                        Это поле является обязательным. Пожалуйста выберите Вашу роль
-                      </span>
-                    </div>
+        <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+          <div class="form-group col-12">
+            <label for="mobile" class="form-label">Ваша роль</label><br>
+            <div class="btn-group" btnRadioGroup [(ngModel)]="user.role" #role="ngModel" [ngModelOptions]="{standalone: true}">
+              <label class="btn btn-outline-primary" btnRadio=user tabindex="0" role="button" name="Role">User</label>
+              <label class="btn btn-outline-primary" btnRadio=moder tabindex="0" role="button"
+                name="Role">Moderator</label>
+              <label class="btn btn-outline-primary" btnRadio=admin tabindex="0" role="button" name="Role">Admin</label>
+            </div>
+            <span *ngIf="role.invalid && (role.touched || userSubmitted)" class="error-block">
+              Это поле является обязательным. Пожалуйста выберите Вашу роль
+            </span>
+          </div>
           <div class="form-group col-12">
             <label for="name" class="form-label">Ваше имя</label>
-            <input type="text" class="form-control" formControlName="userName">
+            <input type="text" class="form-control" name="name" [(ngModel)]="user.userName" #userName="ngModel" [ngModelOptions]="{standalone: true}">
             <span *ngIf="!userName.valid && (userName.touched || userSubmitted) " class="error-block">
               Это поле является обязательным. Пожалуйста заполните
             </span>
@@ -27,8 +28,8 @@
 
           <div class="form-group col-12">
             <label for="email" class="form-label">Ваш email</label>
-            <input type="text" class="form-control" formControlName="email">
-            <span *ngIf="!email.valid && (email.touched || userSubmitted)"  class="error-block">
+            <input type="text" class="form-control" name="email" [(ngModel)]="user.email" #email="ngModel" [ngModelOptions]="{standalone: true}">
+            <span *ngIf="!email.valid && (email.touched || userSubmitted)" class="error-block">
               <span *ngIf="email.hasError('required')">
                 Это поле является обязательным. Пожалуйста заполните
               </span>
@@ -41,7 +42,7 @@
 
           <div class="form-group col-12">
             <label for="password" class="form-label">Пароль</label>
-            <input type="password" class="form-control" formControlName="password">
+            <input type="password" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel" [ngModelOptions]="{standalone: true}">
             <span *ngIf="!password.valid && (password.touched || userSubmitted)" class="error-block">
               <span *ngIf="password.errors['required']">
                 Это поле является обязательным. Пожалуйста заполните
@@ -53,22 +54,8 @@
           </div>
 
           <div class="form-group col-12">
-            <label for="cpassword" class="form-label">Подтвердите пароль</label>
-            <input type="password" class="form-control" formControlName="confirmPassword">
-            <span *ngIf="!confirmPassword.valid && (confirmPassword.touched || userSubmitted)" class="error-block">
-              <span *ngIf="confirmPassword.hasError('required')">
-                Это поле является обязательным. Пожалуйста заполнить
-              </span>
-
-            </span>
-            <span *ngIf="registerForm.hasError('notmatched') && confirmPassword.valid">
-              Выведенный пароль не совпадает
-            </span>
-          </div>
-
-          <div class="form-group col-12">
             <label for="mobile" class="form-label">Номер телефона</label>
-            <input type="text" class="form-control" formControlName="mobile">
+            <input type="text" class="form-control" name="mobile" [(ngModel)]="user.mobile" #mobile="ngModel" [ngModelOptions]="{standalone: true}">
             <span *ngIf="!mobile.valid && (mobile.touched || userSubmitted)" class="error-block">
               <span *ngIf="mobile.errors['required']">
                 Это поле является обязательным. Пожалуйста заполните

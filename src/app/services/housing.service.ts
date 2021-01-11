@@ -61,7 +61,7 @@ export class HousingService {
     let newProp = [property];
 
     if (localStorage.getItem('newProp')) {
-        newProp = [property, ...JSON.parse(localStorage.getItem('newProp'))]
+        newProp = [property, ...JSON.parse(localStorage.getItem('newProp'))];
     }
     localStorage.setItem('newProp', JSON.stringify(newProp));
   }

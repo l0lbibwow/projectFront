@@ -1,4 +1,3 @@
-import { PropertyRead } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
@@ -14,7 +13,7 @@ export class PropertyDetailComponent implements OnInit {
   public propertyId: number;
   property = new Property();
   constructor(private route: ActivatedRoute, private router: Router, private housingService: HousingService) { }
-galleryOptions: NgxGalleryOptions[];
+  galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   ngOnInit(): void {
     const id = 'id';
