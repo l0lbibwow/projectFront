@@ -16,16 +16,14 @@ export class MenuBarComponent implements OnInit {
   loggedIn(): any{
     this.loggedinUser = localStorage.getItem('nameUser');
     const localUsers = localStorage.getItem('token');
-    if(localUsers){
         if (localUsers === 'admin' || localUsers === 'moder') {
-          this.AdminOrModer = false;
-        }
+          this.AdminOrModer = true;
     }
     return this.loggedinUser;
   }
 
   onLogout(): void{
-    this.AdminOrModer = true;
+    this.AdminOrModer = false;
     localStorage.removeItem('token');
     localStorage.removeItem('nameUser');
     this.alertify.success('Вы вышли из личного профиля');
