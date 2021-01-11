@@ -2,7 +2,7 @@
   <div class="col-6 m-auto">
     <div class="card m-auto">
       <div class="card-header">
-        Регистрация {{user.userName}}
+        Регистрация
       </div>
       <div class="card-body">
         <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
@@ -42,7 +42,7 @@
 
           <div class="form-group col-12">
             <label for="password" class="form-label">Пароль</label>
-            <input type="password" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel" [ngModelOptions]="{standalone: true}">
             <span *ngIf="!password.valid && (password.touched || userSubmitted)" class="error-block">
               <span *ngIf="password.errors['required']">
                 Это поле является обязательным. Пожалуйста заполните

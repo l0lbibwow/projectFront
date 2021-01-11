@@ -43,14 +43,11 @@ export class UserRegisterComponent implements OnInit {
   }
 
     onSubmit(): void{
-        console.log(this.registerForm.value);
         this.userSubmitted = true;
-
         if (this.registerForm.valid) {
           // this.user = Object.assign(this.user, this.registerForm.value);
           this.mapUser();
           this.uServ.addUser2(this.user);
-          console.log(this.registerForm.value);
           this.registerForm.reset();
           this.userSubmitted = false;
           this.aService.success('Поздравляем! Вы успешно зарегистрировались!');

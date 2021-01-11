@@ -22,6 +22,7 @@ export class UserService {
           return(e1.Id > e2.Id) ? e1 : e2;
       }).Id;
       user.Id = maxId + 1;
+      console.log(user.Id);
     }
       if (localStorage.getItem('newUser')) {
         newProp = [user, ...JSON.parse(localStorage.getItem('newUser'))];
@@ -35,8 +36,8 @@ export class UserService {
       return +localStorage.getItem('UserPid');
     }
     else{
-      localStorage.setItem('UserPid', '101');
-      return 101;
+      localStorage.setItem('UserPid', '1');
+      return 1;
     }
   }
 }

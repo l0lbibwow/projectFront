@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertifyService } from '../services/alertify.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { AlertifyService } from '../services/alertify.service';
 })
 export class MenuBarComponent implements OnInit {
   loggedinUser: string;
-  constructor(private alertify: AlertifyService) { }
+  constructor(private alertify: AlertifyService, private router: Router) { }
   AdminOrModer: boolean;
   ngOnInit(): void {
   }
@@ -27,5 +28,6 @@ export class MenuBarComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('nameUser');
     this.alertify.success('Вы вышли из личного профиля');
+    this.router.navigate(['/']);
   }
 }
