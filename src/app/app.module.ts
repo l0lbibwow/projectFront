@@ -25,6 +25,7 @@ import { BoldDirective } from './bold.directive';
 import { UsersComponent } from './user/users/users.component';
 import { UserCardComponent } from './user/user-card/user-card.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
+import { AdminOrUserDirective } from './admin-or-user.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { UserDetailComponent } from './user/user-detail/user-detail.component';
     BoldDirective,
     UsersComponent,
     UserCardComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    AdminOrUserDirective
   ],
   imports: [
     BrowserModule,

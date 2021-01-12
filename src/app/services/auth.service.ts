@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   constructor() { }
+
    authUser(user: any) {
       let UserArray = [];
       if (localStorage.getItem('newUser')) {
