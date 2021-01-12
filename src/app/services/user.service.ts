@@ -17,23 +17,25 @@ export class UserService {
 
    addUser2(user: User) {
     let newProp = [user];
-    const maxId: number = this.newUserID();
-    console.log(user.Id);
-    console.log(maxId);
-        if(user.Id === maxId) {
-          if (localStorage.getItem('newUser')) {
-            newProp = [user, ...JSON.parse(localStorage.getItem('newUser'))];
-          }
-          localStorage.setItem('newUser', JSON.stringify(newProp));
-          console.log("Pello");
-        }else{
-          console.log("Hello");
-        }
-      /* if (localStorage.getItem('newUser')) {
-            newProp = [user, ...JSON.parse(localStorage.getItem('newUser'))];
-          }
-          localStorage.setItem('newUser', JSON.stringify(newProp)); */
+    if (localStorage.getItem('newUser')) {
+      newProp = [user, ...JSON.parse(localStorage.getItem('newUser'))];
+    }
+    localStorage.setItem('newUser', JSON.stringify(newProp));
   }
+  updateUser(user: User): void {
+    let Users = this.getUsers();
+    Users = Users.map( u => {
+      if (u.Id !== user.Id) {
+        return u;
+      }
+      return user;
+    });
+   // localStorage.setItem('newUser', JSON.stringify(Users));
+  }
+  getUsers(): User[] {
+    return JSON.parse(localStorage.getItem('newUser'));
+  }
+
   newUserID(): number{
     if (localStorage.getItem('UserPid')) {
       localStorage.setItem('UserPid', String(+localStorage.getItem('UserPid') + 1));
