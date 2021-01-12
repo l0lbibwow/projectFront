@@ -32,7 +32,7 @@ export class UserDetailComponent implements OnInit {
 
     onSubmit(): void{
         this.userSubmitted = true;
-        const newUser = Object.assign({}, this.user);
+        const newUser: User = Object.assign({}, this.user);
         this.uServ.addUser2(newUser);
         this.createRegisterForm.reset();
         this.userSubmitted = false;

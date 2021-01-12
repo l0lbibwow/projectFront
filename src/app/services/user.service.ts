@@ -10,27 +10,31 @@ export class UserService {
   getUser(id: number): User{
     let UserArray = [];
     UserArray = JSON.parse(localStorage.getItem('newUser'));
-    console.log(UserArray.find(v => v.Id === id));
+
     return UserArray.find(v => v.Id === id);
   }
+
+
    addUser2(user: User) {
     let newProp = [user];
-    let users = [];
-    users = JSON.parse(localStorage.getItem('newUser'));
-    if (user.Id === null && user.Id === undefined) {
-      const maxId = users.reduce((e1,e2) => {
-          return(e1.Id > e2.Id) ? e1 : e2;
-      }).Id;
-      user.Id = maxId + 1;
-      console.log(user.Id);
-    }
-      if (localStorage.getItem('newUser')) {
-        newProp = [user, ...JSON.parse(localStorage.getItem('newUser'))];
-      }
-    localStorage.setItem('newUser', JSON.stringify(newProp));
-
+    const maxId: number = this.newUserID();
+    console.log(user.Id);
+    console.log(maxId);
+        if(user.Id === maxId) {
+          if (localStorage.getItem('newUser')) {
+            newProp = [user, ...JSON.parse(localStorage.getItem('newUser'))];
+          }
+          localStorage.setItem('newUser', JSON.stringify(newProp));
+          console.log("Pello");
+        }else{
+          console.log("Hello");
+        }
+      /* if (localStorage.getItem('newUser')) {
+            newProp = [user, ...JSON.parse(localStorage.getItem('newUser'))];
+          }
+          localStorage.setItem('newUser', JSON.stringify(newProp)); */
   }
-  newUserID(){
+  newUserID(): number{
     if (localStorage.getItem('UserPid')) {
       localStorage.setItem('UserPid', String(+localStorage.getItem('UserPid') + 1));
       return +localStorage.getItem('UserPid');
