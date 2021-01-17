@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { IProperty } from 'src/app/shared/iproperty';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Property } from '../shared/property';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,23 +15,24 @@ export class HousingService {
   getAllCities():Observable<string[]>{
     return this.http.get<string[]>('http://localhost:5000/api/city');
   }
-  getProperties():Observable<string[]>{
-    return this.http.get<string[]>('http://localhost:5000/api/property');
-  }
   getProperty(id: number){
     return this.getAllProperties().pipe(
-      map(propertiesArray => {
-       // throw new Error('Ошибка');
-        return propertiesArray.find(p => p.Id === id);
-      })
+      map(propertiesArray => {return propertiesArray.find(p => p.id === id);})
     );
   }
-
+private handleError(errorResponse: HttpErrorResponse){
+  if (errorResponse.error instanceof ErrorEvent) {
+    console.error('Client Side Error: ', errorResponse.error.message);
+  }else{
+    console.error('Server Side Error: ', errorResponse);
+  }
+  return throwError('There is a problem with the service.')
+}
   getAllProperties(SellRent?: number): Observable<Property[]>{
-   return this.http.get('data/properties.json').pipe(
+   return this.http.get('http://localhost:3000/properties').pipe(
       map(data => {
         const propertiesArray: Array<Property> = [];
-        const localProperties = JSON.parse(localStorage.getItem('newProp'));
+/*         const localProperties = JSON.parse(localStorage.getItem('newProp'));
         if (localProperties) {
           for (const id in localProperties) {
             if (SellRent) {
@@ -42,7 +43,7 @@ export class HousingService {
                 propertiesArray.push(localProperties[id]);
           }
         }
-      }
+      } */
       for (const id in data) {
         if (SellRent) {
           if (data.hasOwnProperty(id) && data[id].SellRent === SellRent) {
@@ -54,16 +55,20 @@ export class HousingService {
         }
         return propertiesArray;
       })
-   );
-   return this.http.get<Property[]>('data/properties.json');
+   ).pipe(catchError(this.handleError));
+   return this.http.get<Property[]>('http://localhost:3000/properties');
   }
-  addProperty(property: Property) {
-    let newProp = [property];
+  addProperty(property: Property): Observable<Property> {
 
-    if (localStorage.getItem('newProp')) {
+    return this.http.post<Property>('http://localhost:3000/properties', property, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }).pipe(catchError(this.handleError));
+    /* if (localStorage.getItem('newProp')) {
         newProp = [property, ...JSON.parse(localStorage.getItem('newProp'))];
     }
-    localStorage.setItem('newProp', JSON.stringify(newProp));
+    localStorage.setItem('newProp', JSON.stringify(newProp)); */
   }
   newPropID(){
     if (localStorage.getItem('PID')) {

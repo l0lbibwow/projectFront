@@ -16,15 +16,10 @@ export class UserRegisterComponent implements OnInit {
   user = new User();
   nameList: string[];
   userSubmitted: boolean;
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private uServ: UserService, private hService: HousingService, private aService: AlertifyService) { }
-  /* public userId: number; */
+  constructor(private fb: FormBuilder, private uServ: UserService, private aService: AlertifyService) { }
+
   ngOnInit(): void {
-    this.createRegisterForm();/*
-    this.userId = +this.route.snapshot.params['id']; */
-   /*  this.route.paramMap.subscribe(parameterMap => {
-      const id = +parameterMap.get('id');
-      this.getUser(id);
-    }); */
+    this.createRegisterForm();
   }
   createRegisterForm(): void {
       this.registerForm = this.fb.group({
@@ -47,11 +42,12 @@ export class UserRegisterComponent implements OnInit {
         if (this.registerForm.valid) {
           // this.user = Object.assign(this.user, this.registerForm.value);
           this.mapUser();
-          this.uServ.addUser2(this.user);
-          this.registerForm.reset();
-          this.userSubmitted = false;
-          this.aService.success('Поздравляем! Вы успешно зарегистрировались!');
-
+          this.uServ.addUser(this.user).subscribe((data: User) => {
+            console.log(data);
+            this.userSubmitted = false;
+            this.aService.success('Поздравляем! Вы успешно зарегистрировались!');
+          });
+         // this.registerForm.reset();
         }
         else{
            this.aService.error('К сожалению у Вас возникли проблемы с заполнением поле');
@@ -59,13 +55,11 @@ export class UserRegisterComponent implements OnInit {
 
      }
      mapUser(): void {
-        this.user.Id = this.uServ.newUserID();
         this.user.role = this.role.value;
         this.user.userName = this.userName.value;
         this.user.email = this.email.value;
         this.user.password = this.password.value;
         this.user.mobile = this.mobile.value;
-
      }
 
   get userName(): any{
@@ -87,7 +81,4 @@ export class UserRegisterComponent implements OnInit {
     return this.registerForm.get('role') as FormControl;
   }
      // angular materials
- /*     getUser(id: number): void{
-      this.user = Object.assign({}, this.uServ.getUser(id))
-     } */
 }

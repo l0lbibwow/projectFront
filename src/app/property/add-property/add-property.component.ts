@@ -24,7 +24,7 @@ export class AddPropertyComponent implements OnInit {
 nextClicked: boolean;
 cityList: any[];
   propertyView: IPropertyBase = {
-    Id: null,
+    id: null,
     Name:'',
     Price: null,
     SellRent: null,
@@ -42,10 +42,7 @@ cityList: any[];
       this.cityList = data;
       console.log(data);
     })
-    this.housingService.getProperties().subscribe(data => {
-      //this.cityList = data;
-      console.log(data);
-    })
+
   }
   CreatedAddPropertyForm(){
     this.addPropertyForm = this.fb.group({
@@ -120,22 +117,23 @@ cityList: any[];
     this.nextClicked = true;
     if (this.allTabsValid()) {
       this.mapProperty();
-      this.housingService.addProperty(this.property);
-      this.alertify.success('Congrats, your property listed successfully on our website');
-     // console.log(this.addPropertyForm);
-
-      if(this.SellRent.value === '2') {
+      this.housingService.addProperty(this.property).subscribe((data: Property) => {
+        console.log(data.City);
+        if(this.SellRent.value === '2') {
         this.router.navigate(['/rent-property']);
       } else {
         this.router.navigate(['/']);
       }
+      });
+      this.alertify.success('Congrats, your property listed successfully on our website');
+
     } else {
       this.alertify.error('Please review the form and provide all valid entries');
     }
   }
 
    mapProperty(): void {
-    this.property.Id = this.housingService.newPropID();
+  ///  this.property.id = this.housingService.newPropID();
     this.property.SellRent = +this.SellRent.value;
     this.property.BHK = this.BHK.value;
     this.property.PType = this.PType.value;

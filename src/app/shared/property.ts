@@ -1,7 +1,7 @@
 import { IPropertyBase } from './ipropertybase';
 
 export class Property implements IPropertyBase{
-  Id: number;
+  id: number;
   SellRent: number;
   Name: string;
   PType: string;

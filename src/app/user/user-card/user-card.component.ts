@@ -11,10 +11,9 @@ export class UserCardComponent implements OnInit {
 
   constructor() { }
   @Input() user: User;
-  @Output() notify = new EventEmitter();
   ngOnInit(): void {
   }
-  public AdminOrModer: boolean;
+
   hideEdit(): any{
     const localUsers = localStorage.getItem('token');
     if(localUsers === 'admin'){

@@ -1,41 +1,59 @@
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/shared/user';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor() { }
-  getUser(id: number): User{
-    let UserArray = [];
-    UserArray = JSON.parse(localStorage.getItem('newUser'));
-
-    return UserArray.find(v => v.Id === id);
+  constructor(private http: HttpClient) { }
+  baseUrl = 'http://localhost:3000/users';
+  getUser(id: number): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/${id}`)
+    .pipe(catchError(this.handleError));
+  }
+  private handleError(errorResponse: HttpErrorResponse){
+    if (errorResponse.error instanceof ErrorEvent) {
+      console.error('Client Side Error: ', errorResponse.error.message);
+    }else{
+      console.error('Server Side Error: ', errorResponse);
+    }
+    return throwError('There is a problem with the service.')
   }
 
-
-   addUser2(user: User) {
-    let newProp = [user];
-    if (localStorage.getItem('newUser')) {
+  addUser(user: User) : Observable<User>  {
+    return this.http.post<User>(this.baseUrl, user, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }).pipe(catchError(this.handleError));
+   /*  if (localStorage.getItem('newUser')) {
       newProp = [user, ...JSON.parse(localStorage.getItem('newUser'))];
     }
-    localStorage.setItem('newUser', JSON.stringify(newProp));
+    localStorage.setItem('newUser', JSON.stringify(newProp)); */
   }
-  updateUser(user: User): void {
-    let Users = this.getUsers();
+  updateUser(user: User): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/${user.id}`, user, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }).pipe(catchError(this.handleError));
+
+/*     let Users = this.getUsers();
     Users = Users.map( u => {
       if (u.Id !== user.Id) {
         return u;
       }
       return user;
     });
-   // localStorage.setItem('newUser', JSON.stringify(Users));
+    localStorage.setItem('newUser', JSON.stringify(Users)); */
   }
-  getUsers(): User[] {
-    return JSON.parse(localStorage.getItem('newUser'));
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.baseUrl);
   }
-
   newUserID(): number{
     if (localStorage.getItem('UserPid')) {
       localStorage.setItem('UserPid', String(+localStorage.getItem('UserPid') + 1));

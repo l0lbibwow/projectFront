@@ -39,8 +39,11 @@
     </div>
   </div>
   <div class="panel-footer">
-      <p *ngIf="hideEdit()" class="list-inline-item">
-        <button class="btn btn-primary" routerLink="user-detail/{{user.Id}}">Изменить</button>
+      <p class="list-inline-item">
+        <button class="btn btn-primary" routerLink="user-detail/{{user.id}}">Изменить</button>
       </p>
+      <!-- <p *ngIf="hideEdit()" class="list-inline-item">
+        <button class="btn btn-primary" routerLink="user-detail/{{user.Id}}">Изменить</button>
+      </p> -->
   </div>
 </div>

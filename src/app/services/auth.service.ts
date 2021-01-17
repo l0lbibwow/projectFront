@@ -1,19 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { User } from '../shared/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-   authUser(user: any) {
-      let UserArray = [];
-      if (localStorage.getItem('newUser')) {
-        UserArray = JSON.parse(localStorage.getItem('newUser'));
-      }
-      console.log(UserArray);
-      return UserArray.find(p => p.userName === user.userName && p.password === user.password);
+   authUser(user: User) {
+   /*   this.http.get<User[]>("http://localhost:3000/users").subscribe(data => {
+      data.find(p => console.log(p))  ;
+      }); */
+      return this.http.get<User[]>("http://localhost:3000/users").subscribe(data => {
+        data.find(p => p.userName === user.userName && p.password === user.password);
+      });
   }
 }

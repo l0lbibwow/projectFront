@@ -16,7 +16,7 @@ export class UserDetailComponent implements OnInit {
   constructor(private fb: FormBuilder,private router: Router, private route: ActivatedRoute,  private uServ: UserService, private hService: HousingService, private aService: AlertifyService) { }
   @ViewChild('registerForm') public createRegisterForm: NgForm;
   public userId: number;
-  user: User;
+  user = new User();
   nameList: string[];
   userSubmitted: boolean;
   ngOnInit(): void {
@@ -27,15 +27,21 @@ export class UserDetailComponent implements OnInit {
     });
   }
   private getUser(id: number){
-    this.user = Object.assign({},this.uServ.getUser(id));
+     return this.uServ.getUser(id).subscribe((user) => this.user = user,
+     (err:any) => console.log(err))
   }
 
     onSubmit(): void{
         this.userSubmitted = true;
-        const newUser: User = Object.assign({}, this.user);
-        this.uServ.updateUser(newUser);
-        this.createRegisterForm.reset();
-        this.userSubmitted = false;
-        this.router.navigate(['user/users']);
+      //  const newUser: User = Object.assign({}, this.user);
+        this.uServ.updateUser(this.user).subscribe(
+          () => {
+            this.createRegisterForm.reset();
+            this.userSubmitted = false;
+            this.router.navigate(['user/users']);
+          },
+          (error: any) => console.log(error)
+        );
+
      }
 }
