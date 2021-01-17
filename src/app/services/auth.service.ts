@@ -13,6 +13,7 @@ export class AuthService {
       if (localStorage.getItem('newUser')) {
         UserArray = JSON.parse(localStorage.getItem('newUser'));
       }
+      console.log(UserArray);
       return UserArray.find(p => p.userName === user.userName && p.password === user.password);
   }
 }
