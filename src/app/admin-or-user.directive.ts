@@ -16,7 +16,6 @@ export class AdminOrUserDirective implements OnInit{
     }else{
         this.elementRef.nativeElement.style.display = "none";
     }
-    console.log(this.authService.authUser);
   }
 }
 

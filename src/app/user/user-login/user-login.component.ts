@@ -3,8 +3,6 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { AlertifyService } from 'src/app/services/alertify.service';
-import { map } from 'rxjs/operators';
-import { User } from 'src/app/shared/user';
 
 @Component({
   selector: 'app-user-login',
@@ -18,17 +16,22 @@ export class UserLoginComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  userName: string;
+  role: string;
   onLogin(loginForm: NgForm): void{
     console.log(loginForm.value);
-    const token = this.authService.authUser(loginForm.value);
-    console.log(token);
+
+    const token = this.authService.authUser(loginForm.value).subscribe(data => console.log(data))
+
     if (token) {
-     // localStorage.setItem('token', );
-     // localStorage.setItem('nameUser', token.userName);
-      this.alertify.success('Login Successful');
+      this.authService.authUser(loginForm.value)
+      .subscribe(data => {localStorage.setItem('nameUser', data.userName)});
+
+      this.authService.authUser(loginForm.value).subscribe(data => {localStorage.setItem('token', data.role) });
+      this.alertify.success('Добро пожаловать!');
       this.router.navigate(['/']);
     } else {
-      this.alertify.error('User id or password is wrong');
+      this.alertify.error('Ваш ник или пароль неправильный');
     }
   }
 }
