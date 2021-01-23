@@ -19,14 +19,16 @@ export class UserLoginComponent implements OnInit {
 
   }
   onLogin(loginForm: NgForm): void{
-    const token = this.authService.authUser(loginForm.value).subscribe(data => console.log(data));
-    if (token) {
-      this.authService.authUser(loginForm.value).subscribe(data => {localStorage.setItem('nameUser', data.userName); });
-      this.authService.authUser(loginForm.value).subscribe(data => {localStorage.setItem('token', data.role); });
-      this.alertify.success('Добро пожаловать!');
-      this.router.navigate(['/']);
-    } else {
-      this.alertify.error('Ваш ник или пароль неправильный');
-    }
+    console.log(loginForm.value);
+    this.authService.authUser(loginForm.value).subscribe(data => {
+      if (data !== undefined) {
+        this.authService.authUser(loginForm.value).subscribe(data => {localStorage.setItem('nameUser', data.userName); });
+        this.authService.authUser(loginForm.value).subscribe(data => {localStorage.setItem('token', data.role); });
+        this.alertify.success('Добро пожаловать!');
+        this.router.navigate(['/']);
+      }else{
+        this.alertify.error('Ваш ник или пароль неправильный или Вам нужно зарегистрироваться');
+      }
+     });
   }
 }
