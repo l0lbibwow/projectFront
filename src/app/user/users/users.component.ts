@@ -11,8 +11,8 @@ import { User } from 'src/app/shared/user';
 })
 export class UsersComponent implements OnInit {
 
-  constructor(private http: HttpClient, private userService: UserService) { }
-    Users: User[];
+  constructor(private userService: UserService) { }
+  Users: User[];
   ngOnInit(): void {
     this.userService.getUsers().subscribe((data: User[]) => {
       this.Users = data;

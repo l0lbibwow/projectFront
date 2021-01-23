@@ -13,11 +13,11 @@ export class PropertyListComponent implements OnInit {
   SellRent = 1;
   constructor(private route: ActivatedRoute, private housingService: HousingService) { }
   Properties: Array<Property>;
-  Today = new Date()
+  Today = new Date();
   public City = '';
   public SearchCity = '';
   public SortbyParam = '';
-  public SortDirection= 'asc';
+  public SortDirection = 'asc';
 
   ngOnInit(): void {
     if (this.route.snapshot.url.toString()) {
@@ -26,21 +26,20 @@ export class PropertyListComponent implements OnInit {
     this.housingService.getAllProperties(this.SellRent).subscribe(
       data => {
         this.Properties = data;
-        //console.log(data);
       }, error => {
         console.log('httperror:');
         console.log(error);
       }
     );
     }
-    onCityFilter(){
+    onCityFilter(): void{
       this.SearchCity = this.City;
     }
-    onCityFilterClear(){
+    onCityFilterClear(): void{
       this.SearchCity = '';
       this.City = '';
     }
-    onSortDirection(){
+    onSortDirection(): void{
       if (this.SortDirection === 'desc') {
           this.SortDirection = 'asc';
       }else{

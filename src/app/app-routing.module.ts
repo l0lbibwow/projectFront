@@ -25,5 +25,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
-export const routerComponents = [AddPropertyComponent, PropertyDetailComponent, PropertyListComponent,PageNotFoundComponent,UserLoginComponent,UserRegisterComponent]
+export class AppRoutingModule { };
+export const routerComponents = [AddPropertyComponent, PropertyDetailComponent, PropertyListComponent, PageNotFoundComponent, UserLoginComponent, UserRegisterComponent];

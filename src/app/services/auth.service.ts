@@ -14,7 +14,7 @@ export class AuthService {
    authUser(user: User): Observable<User> {
     return this.http.get<any>('http://localhost:3000/users')
     .pipe(map(
-      data => { return data.find(p =>p.userName === user.userName && p.password === user.password);
-    }))
+      data => { return data.find(p => p.userName === user.userName && p.password === user.password);
+    }));
   }
 }

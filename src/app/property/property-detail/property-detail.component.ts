@@ -20,7 +20,7 @@ export class PropertyDetailComponent implements OnInit {
     this.propertyId = +this.route.snapshot.params[id];
     this.route.data.subscribe(
       (data: Property) => {
-        this.property = data['prp'];
+        this.property = data[' prp'];
       }
     );
     /* this.route.params.subscribe(
@@ -60,9 +60,9 @@ export class PropertyDetailComponent implements OnInit {
         big: 'https://astkt-photos-kr.kcdn.kz/webp/44/444f74e0-0f27-4117-a511-eb57a5626389/14-750x470.webp'
       },
       {
-        small:'https://astkt-photos-kr.kcdn.kz/webp/44/444f74e0-0f27-4117-a511-eb57a5626389/8-full.webp',
-        medium:'https://astkt-photos-kr.kcdn.kz/webp/44/444f74e0-0f27-4117-a511-eb57a5626389/8-full.webp',
-        big:'https://astkt-photos-kr.kcdn.kz/webp/44/444f74e0-0f27-4117-a511-eb57a5626389/8-full.webp',
+        small: 'https://astkt-photos-kr.kcdn.kz/webp/44/444f74e0-0f27-4117-a511-eb57a5626389/8-full.webp',
+        medium: 'https://astkt-photos-kr.kcdn.kz/webp/44/444f74e0-0f27-4117-a511-eb57a5626389/8-full.webp',
+        big: 'https://astkt-photos-kr.kcdn.kz/webp/44/444f74e0-0f27-4117-a511-eb57a5626389/8-full.webp',
       }
     ];
   }

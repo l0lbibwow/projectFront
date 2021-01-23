@@ -12,9 +12,9 @@ export class AdminOrUserDirective implements OnInit{
   ngOnInit(){
     const localUsers = localStorage.getItem('token');
     if ((localUsers === 'admin' || localUsers === 'moder') && this.authService.authUser) {
-        this.elementRef.nativeElement.style.display = "block";
+        this.elementRef.nativeElement.style.display = 'block';
     }else{
-        this.elementRef.nativeElement.style.display = "none";
+        this.elementRef.nativeElement.style.display = 'none';
     }
   }
 }

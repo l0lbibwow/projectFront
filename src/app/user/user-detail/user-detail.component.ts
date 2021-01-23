@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertifyService } from 'src/app/services/alertify.service';
-import { HousingService } from 'src/app/services/housing.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/shared/user';
 
@@ -13,7 +11,7 @@ import { User } from 'src/app/shared/user';
 })
 export class UserDetailComponent implements OnInit {
 
-  constructor(private fb: FormBuilder,private router: Router, private route: ActivatedRoute,  private uServ: UserService, private hService: HousingService, private aService: AlertifyService) { }
+  constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private uServ: UserService) { }
   @ViewChild('registerForm') public createRegisterForm: NgForm;
   public userId: number;
   user = new User();
@@ -26,9 +24,9 @@ export class UserDetailComponent implements OnInit {
       this.getUser(id);
     });
   }
-  private getUser(id: number){
+  private getUser(id: number): any{
      return this.uServ.getUser(id).subscribe((user) => this.user = user,
-     (err:any) => console.log(err))
+     (err: any) => console.log(err));
   }
 
     onSubmit(): void{

@@ -21,10 +21,10 @@ export class UserService {
     }else{
       console.error('Server Side Error: ', errorResponse);
     }
-    return throwError('There is a problem with the service.')
+    return throwError('There is a problem with the service.');
   }
 
-  addUser(user: User) : Observable<User>  {
+  addUser(user: User): Observable<User>  {
     return this.http.post<User>(this.baseUrl, user, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'

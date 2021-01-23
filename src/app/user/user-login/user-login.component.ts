@@ -12,22 +12,17 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 export class UserLoginComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, private alertify: AlertifyService) { }
+  public userName: string;
+  public role: string;
 
   ngOnInit(): void {
 
   }
-  userName: string;
-  role: string;
   onLogin(loginForm: NgForm): void{
-    console.log(loginForm.value);
-
-    const token = this.authService.authUser(loginForm.value).subscribe(data => console.log(data))
-
+    const token = this.authService.authUser(loginForm.value).subscribe(data => console.log(data));
     if (token) {
-      this.authService.authUser(loginForm.value)
-      .subscribe(data => {localStorage.setItem('nameUser', data.userName)});
-
-      this.authService.authUser(loginForm.value).subscribe(data => {localStorage.setItem('token', data.role) });
+      this.authService.authUser(loginForm.value).subscribe(data => {localStorage.setItem('nameUser', data.userName); });
+      this.authService.authUser(loginForm.value).subscribe(data => {localStorage.setItem('token', data.role); });
       this.alertify.success('Добро пожаловать!');
       this.router.navigate(['/']);
     } else {

@@ -12,12 +12,12 @@ export class HousingService {
 
   constructor(private http: HttpClient) { }
 
-  getAllCities():Observable<string[]>{
+  getAllCities(): Observable<string[]>{
     return this.http.get<string[]>('http://localhost:5000/api/city');
   }
-  getProperty(id: number){
+  getProperty(id: number): Observable<Property>{
     return this.getAllProperties().pipe(
-      map(propertiesArray => {return propertiesArray.find(p => p.id === id);})
+      map(propertiesArray => propertiesArray.find(p => p.id === id))
     );
   }
 private handleError(errorResponse: HttpErrorResponse){
@@ -26,7 +26,7 @@ private handleError(errorResponse: HttpErrorResponse){
   }else{
     console.error('Server Side Error: ', errorResponse);
   }
-  return throwError('There is a problem with the service.')
+  return throwError('There is a problem with the service.');
 }
   getAllProperties(SellRent?: number): Observable<Property[]>{
    return this.http.get('http://localhost:3000/properties').pipe(
@@ -44,7 +44,7 @@ private handleError(errorResponse: HttpErrorResponse){
           }
         }
       } */
-      for (const id in data) {
+        for (const id in data){
         if (SellRent) {
           if (data.hasOwnProperty(id) && data[id].SellRent === SellRent) {
             propertiesArray.push(data[id]);
@@ -70,9 +70,9 @@ private handleError(errorResponse: HttpErrorResponse){
     }
     localStorage.setItem('newProp', JSON.stringify(newProp)); */
   }
-  newPropID(){
+  newPropID(): number{
     if (localStorage.getItem('PID')) {
-      localStorage.setItem('PID', String(+localStorage.getItem('PID')+1));
+      localStorage.setItem('PID', String(+localStorage.getItem('PID') + 1));
       return +localStorage.getItem('PID');
     }
     else{
