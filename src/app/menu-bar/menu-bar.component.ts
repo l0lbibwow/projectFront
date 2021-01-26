@@ -19,7 +19,7 @@ export class MenuBarComponent implements OnInit {
   }
 
   onLogout(): void{
-    localStorage.removeItem('token');
+    localStorage.removeItem('userRole');
     localStorage.removeItem('nameUser');
     this.alertify.success('Вы вышли из личного профиля');
     this.router.navigate(['/']);

@@ -23,7 +23,7 @@ export class UserLoginComponent implements OnInit {
     this.authService.authUser(loginForm.value).subscribe(data => {
       if (data !== undefined) {
         this.authService.authUser(loginForm.value).subscribe(data => {localStorage.setItem('nameUser', data.userName); });
-        this.authService.authUser(loginForm.value).subscribe(data => {localStorage.setItem('token', data.role); });
+        this.authService.authUser(loginForm.value).subscribe(data => {localStorage.setItem('userRole', data.role); });
         this.alertify.success('Добро пожаловать!');
         this.router.navigate(['/']);
       }else{

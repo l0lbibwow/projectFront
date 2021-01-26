@@ -15,7 +15,7 @@ export class UserCardComponent implements OnInit {
   }
 
   hideEdit(): any{
-    const localUsers = localStorage.getItem('token');
+    const localUsers = localStorage.getItem('userRole');
     if (localUsers === 'admin'){
       return localUsers;
     }

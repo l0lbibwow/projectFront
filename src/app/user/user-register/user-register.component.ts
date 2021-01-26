@@ -4,7 +4,6 @@ import { HousingService } from 'src/app/services/housing.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/shared/user';
 import { AlertifyService } from 'src/app/services/alertify.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-register',
