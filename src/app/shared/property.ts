@@ -11,6 +11,6 @@ export class Property implements IPropertyBase{
   builtArea: number;
   address: string;
   city: string;
-  Image?: string;
+  image?: string;
   description?: string;
 }
