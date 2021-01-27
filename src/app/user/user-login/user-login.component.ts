@@ -10,15 +10,12 @@ import { AlertifyService } from 'src/app/services/alertify.service';
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {
-
-  constructor(private authService: AuthService, private router: Router, private alertify: AlertifyService) { }
   public userName: string;
   public role: string;
-
+  constructor(private authService: AuthService, private router: Router, private alertify: AlertifyService) { }
   ngOnInit(): void {
-
   }
-  onLogin(loginForm: NgForm): void{
+  onLogin(loginForm: NgForm): void {
     console.log(loginForm.value);
     this.authService.authUser(loginForm.value).subscribe(data => {
       if (data !== undefined) {

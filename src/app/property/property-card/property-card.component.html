@@ -1,28 +1,28 @@
-
-  <div class="card">
-    <div class="card-img-wrapper">
-      <img *ngIf="property.image" class="card-img-top" [src]="property.image" alt="">
-      <img *ngIf="!property.image" class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1gMGdVUkCp9oeXuc6vK4mfE-hRU6o_BhccA&usqp=CAU" alt="">
-      <ul *ngIf="!hideIcons" class="list-inline p-2 text-center member-icons animate">
-        <li class="list-inline-item">
-          <button class="btn btn-primary" routerLink="property-detail/{{property.Id}}"><i class="fas fa-edit"></i></button>
-        </li>
-        <li class="list-inline-item">
-          <button class="btn btn-primary"><i class="far fa-id-badge"></i></button>
-        </li>
-      </ul>
-    </div>
-<div class="card-body p-1">
-  <h1 class="mb-0"> {{property.BHK}}-комн {{property.PType}} </h1>
-
-  {{property.Name}}
-  <span *ngIf="property.Name">,</span>
-  {{property.City}}
-
-  <hr class="mt-0 mb-2">
-
-  <h6 class="mb-0">Цена: <span class="font-highlight">{{property.Price}} KZT.</span> |
-    Площадь: <span class="font-highlight">{{property.BuiltArea}}м²</span> </h6>
-</div>
+<div class="card">
+  <div class="card-img-wrapper">
+    <img *ngIf="property.image" class="card-img-top" [src]="property.image" alt="">
+    <img *ngIf="!property.image" class="card-img-top"
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1gMGdVUkCp9oeXuc6vK4mfE-hRU6o_BhccA&usqp=CAU" alt="">
+    <ul *ngIf="!hideIcons" class="list-inline p-2 text-center member-icons animate">
+      <li class="list-inline-item">
+        <button class="btn btn-primary" routerLink="property-detail/{{property.id}}"><i
+            class="fas fa-edit"></i></button>
+      </li>
+      <li class="list-inline-item">
+        <button class="btn btn-primary"><i class="far fa-id-badge"></i></button>
+      </li>
+    </ul>
   </div>
+  <div class="card-body p-1">
+    <h1 class="mb-0"> {{property.bhk}}-комн {{property.pType}} </h1>
 
+    {{property.name}}
+    <span *ngIf="property.name">,</span>
+    {{property.city}}
+
+    <hr class="mt-0 mb-2">
+
+    <h6 class="mb-0">Цена: <span class="font-highlight">{{property.price}} KZT.</span> |
+      Площадь: <span class="font-highlight">{{property.builtArea}}м²</span> </h6>
+  </div>
+</div>

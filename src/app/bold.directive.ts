@@ -6,7 +6,7 @@ import { Directive, HostBinding, HostListener } from '@angular/core';
 export class BoldDirective {
 
   constructor() { }
- private fontWeight = 'normal';
+    private fontWeight = 'normal';
 
     @HostBinding('style.fontWeight') get getFontWeight(): any{
 

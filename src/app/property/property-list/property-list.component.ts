@@ -11,14 +11,14 @@ import { Property } from 'src/app/shared/property';
 })
 export class PropertyListComponent implements OnInit {
   SellRent = 1;
-  constructor(private route: ActivatedRoute, private housingService: HousingService) { }
   Properties: Array<Property>;
   Today = new Date();
   public City = '';
   public SearchCity = '';
   public SortbyParam = '';
   public SortDirection = 'asc';
-
+  constructor(private route: ActivatedRoute,
+    private housingService: HousingService) { }
   ngOnInit(): void {
     if (this.route.snapshot.url.toString()) {
       this.SellRent = 2;
@@ -29,22 +29,20 @@ export class PropertyListComponent implements OnInit {
       }, error => {
         console.log('httperror:');
         console.log(error);
-      }
-    );
-    }
-    onCityFilter(): void{
+      });
+  }
+  onCityFilter(): void {
       this.SearchCity = this.City;
+   }
+  onCityFilterClear(): void {
+    this.SearchCity = '';
+    this.City = '';
+  }
+  onSortDirection(): void {
+    if (this.SortDirection === 'desc') {
+        this.SortDirection = 'asc';
+    }else{
+      this.SortDirection = 'desc';
     }
-    onCityFilterClear(): void{
-      this.SearchCity = '';
-      this.City = '';
-    }
-    onSortDirection(): void{
-      if (this.SortDirection === 'desc') {
-          this.SortDirection = 'asc';
-      }else{
-        this.SortDirection = 'desc';
-      }
-    }
-
+  }
 }

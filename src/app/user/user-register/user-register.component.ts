@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { HousingService } from 'src/app/services/housing.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/shared/user';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -36,30 +35,28 @@ export class UserRegisterComponent implements OnInit {
       {notmatched: true};
   }
 
-    onSubmit(): void{
-        this.userSubmitted = true;
-        if (this.registerForm.valid) {
-          // this.user = Object.assign(this.user, this.registerForm.value);
-          this.mapUser();
-          this.uServ.addUser(this.user).subscribe((data: User) => {
-            console.log(data);
-            this.userSubmitted = false;
-            this.aService.success('Поздравляем! Вы успешно зарегистрировались!');
-          });
-         // this.registerForm.reset();
-        }
-        else{
-           this.aService.error('К сожалению у Вас возникли проблемы с заполнением поле');
-        }
-
-     }
-     mapUser(): void {
-        this.user.role = this.role.value;
-        this.user.userName = this.userName.value;
-        this.user.email = this.email.value;
-        this.user.password = this.password.value;
-        this.user.mobile = this.mobile.value;
-     }
+  onSubmit(): void {
+    this.userSubmitted = true;
+    if (this.registerForm.valid) {
+      this.mapUser();
+      this.uServ.addUser(this.user).subscribe((data: User) => {
+      console.log(data);
+      this.userSubmitted = false;
+      this.aService.success('Поздравляем! Вы успешно зарегистрировались!');
+      });
+      this.registerForm.reset();
+    }
+    else{
+      this.aService.error('К сожалению у Вас возникли проблемы с заполнением поле');
+    }
+  }
+  mapUser(): void {
+    this.user.role = this.role.value;
+    this.user.userName = this.userName.value;
+    this.user.email = this.email.value;
+    this.user.password = this.password.value;
+    this.user.mobile = this.mobile.value;
+  }
 
   get userName(): any{
     return this.registerForm.get('userName') as FormControl;
@@ -79,5 +76,4 @@ export class UserRegisterComponent implements OnInit {
   get role(): any{
     return this.registerForm.get('role') as FormControl;
   }
-     // angular materials
 }

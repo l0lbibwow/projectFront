@@ -9,7 +9,8 @@ import { AlertifyService } from '../services/alertify.service';
 })
 export class MenuBarComponent implements OnInit {
   loggedinUser: string;
-  constructor(private alertify: AlertifyService, private router: Router) { }
+  constructor(private alertify: AlertifyService,
+    private router: Router) { }
   ngOnInit(): void {
   }
 

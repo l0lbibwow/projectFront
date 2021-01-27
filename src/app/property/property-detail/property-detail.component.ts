@@ -12,9 +12,11 @@ import { Property } from 'src/app/shared/property';
 export class PropertyDetailComponent implements OnInit {
   public propertyId: number;
   property = new Property();
-  constructor(private route: ActivatedRoute, private router: Router, private housingService: HousingService) { }
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private housingService: HousingService) { }
   ngOnInit(): void {
     const id = 'id';
     this.propertyId = +this.route.snapshot.params[id];
@@ -23,22 +25,22 @@ export class PropertyDetailComponent implements OnInit {
         this.property = data[' prp'];
       }
     );
-    /* this.route.params.subscribe(
-      (params) =>{
+    this.route.params.subscribe(
+      (params) => {
         this.propertyId = +params[id];
         this.housingService.getProperty(this.propertyId).subscribe(
           (data) => {
-            this.property.Name = data.Name;
-            this.property.PType = data.PType;
-            this.property.BHK = data.BHK;
-            this.property.City = data.City;
-            this.property.Price = data.Price;
-            this.property.BuiltArea = data.BuiltArea;
+            this.property.name = data.name;
+            this.property.pType = data.pType;
+            this.property.bhk = data.bhk;
+            this.property.city = data.city;
+            this.property.price = data.price;
+            this.property.builtArea = data.builtArea;
           },
           error => this.router.navigate(['/'])
         );
       }
-    ); */
+    );
     this.galleryOptions = [
       {
         width: '100%',

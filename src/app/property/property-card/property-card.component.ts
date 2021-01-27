@@ -7,11 +7,9 @@ import { IPropertyBase } from 'src/app/shared/ipropertybase';
   styleUrls: ['./property-card.component.css']
 })
 export class PropertyCardComponent implements OnInit {
-@Input() property: IPropertyBase;
-@Input() hideIcons: boolean;
+  @Input() property: IPropertyBase;
+  @Input() hideIcons: boolean;
   constructor() { }
-
   ngOnInit(): void {
   }
-
 }

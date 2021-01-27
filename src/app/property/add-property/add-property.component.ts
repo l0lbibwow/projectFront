@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TabsetComponent } from 'ngx-bootstrap/tabs/public_api';
 import { IPropertyBase } from 'src/app/shared/ipropertybase';
@@ -14,26 +14,27 @@ import { Property } from 'src/app/shared/property';
   styleUrls: ['./add-property.component.css']
 })
 export class AddPropertyComponent implements OnInit {
-  // @ViewChild('Form') addPropertyForm: NgForm;
   @ViewChild('formTabs') formTabs: TabsetComponent;
   property = new Property();
   addPropertyForm: FormGroup;
-  constructor(private fb: FormBuilder, private r: Router, private housingService: HousingService, private alertify: AlertifyService) { }
   propertyTypes: Array<string> = ['Дом', 'Квартира', 'Многоэтажный'];
   furnishTypes: Array<string> = ['Полностью', 'Полу', 'Немеблированный'];
   nextClicked: boolean;
   cityList: any[];
+  constructor(private fb: FormBuilder,
+    private r: Router,
+    private housingService: HousingService,
+    private alertify: AlertifyService) { }
   propertyView: IPropertyBase = {
     id: null,
-    Name: '',
-    Price: null,
-    SellRent: null,
-    PType: null,
-    FType: null,
-    BHK: null,
-    BuiltArea: null,
-    City: '',
-    RTM: null
+    name: '',
+    price: null,
+    sellRent: null,
+    pType: null,
+    fType: null,
+    bhk: null,
+    builtArea: null,
+    city: ''
   };
 
   ngOnInit(): void {
@@ -45,80 +46,80 @@ export class AddPropertyComponent implements OnInit {
   }
   CreatedAddPropertyForm(): void{
     this.addPropertyForm = this.fb.group({
-      BasicInfo: this.fb.group({
-        SellRent: [null , Validators.required],
-        BHK: [null, Validators.required],
-        PType: [null, Validators.required],
-        FType: [null, Validators.required],
-        Name: [null, Validators.required],
-        City: [null, Validators.required]
+      basicInfo: this.fb.group({
+        sellRent: [null , Validators.required],
+        bhk: [null, Validators.required],
+        pType: [null, Validators.required],
+        fType: [null, Validators.required],
+        name: [null, Validators.required],
+        city: [null, Validators.required]
       }),
 
-      PriceInfo: this.fb.group({
+      priceInfo: this.fb.group({
         Price: [null, Validators.required],
         BuiltArea: [null, Validators.required]
       }),
 
-      AddressInfo: this.fb.group({
+      addressInfo: this.fb.group({
         Address: [null, Validators.required],
       }),
     });
   }
 
-      get BasicInfo(): FormGroup {
-        return this.addPropertyForm.controls.BasicInfo as FormGroup;
+      get basicInfo(): FormGroup {
+        return this.addPropertyForm.controls.basicInfo as FormGroup;
       }
 
-      get PriceInfo(): FormGroup {
-        return this.addPropertyForm.controls.PriceInfo as FormGroup;
+      get priceInfo(): FormGroup {
+        return this.addPropertyForm.controls.priceInfo as FormGroup;
       }
 
-      get AddressInfo(): FormGroup {
-        return this.addPropertyForm.controls.AddressInfo as FormGroup;
+      get addressInfo(): FormGroup {
+        return this.addPropertyForm.controls.addressInfo as FormGroup;
       }
 
-      get SellRent(): FormControl {
-        return this.BasicInfo.controls.SellRent as FormControl;
+      get sellRent(): FormControl {
+        return this.basicInfo.controls.sellRent as FormControl;
       }
 
-      get BHK(): FormControl {
-        return this.BasicInfo.controls.BHK as FormControl;
+      get bhk(): FormControl {
+        return this.basicInfo.controls.bhk as FormControl;
       }
 
-      get PType(): FormControl {
-        return this.BasicInfo.controls.PType as FormControl;
+      get pType(): FormControl {
+        return this.basicInfo.controls.pType as FormControl;
       }
 
-      get FType(): FormControl {
-        return this.BasicInfo.controls.FType as FormControl;
+      get fType(): FormControl {
+        return this.basicInfo.controls.fType as FormControl;
       }
 
-      get Name(): FormControl {
-        return this.BasicInfo.controls.Name as FormControl;
+      get name(): FormControl {
+        return this.basicInfo.controls.name as FormControl;
       }
 
-      get City(): FormControl {
-        return this.BasicInfo.controls.City as FormControl;
+      get city(): FormControl {
+        return this.basicInfo.controls.city as FormControl;
       }
 
-      get Price(): FormControl {
-        return this.PriceInfo.controls.Price as FormControl;
+      get price(): FormControl {
+        return this.priceInfo.controls.price as FormControl;
       }
 
-      get BuiltArea(): FormControl {
-        return this.PriceInfo.controls.BuiltArea as FormControl;
+      get builtArea(): FormControl {
+        return this.priceInfo.controls.builtArea as FormControl;
       }
 
-      get Address(): FormControl {
-        return this.AddressInfo.controls.Address as FormControl;
+      get address(): FormControl {
+        return this.addressInfo.controls.address as FormControl;
       }
   onSubmit(): void{
     this.nextClicked = true;
     if (this.allTabsValid()) {
       this.mapProperty();
       this.housingService.addProperty(this.property).subscribe((data: Property) => {
-        console.log(data.City);
-        if (this.SellRent.value === '2') {
+        console.log(data.city);
+        if (this.sellRent.value === '2') {
         this.r.navigate(['/rent-property']);
       } else {
         this.r.navigate(['/']);
@@ -132,29 +133,28 @@ export class AddPropertyComponent implements OnInit {
   }
 
    mapProperty(): void {
-  ///  this.property.id = this.housingService.newPropID();
-    this.property.SellRent = +this.SellRent.value;
-    this.property.BHK = this.BHK.value;
-    this.property.PType = this.PType.value;
-    this.property.Name = this.Name.value;
-    this.property.City = this.City.value;
-    this.property.FType = this.FType.value;
-    this.property.Price = this.Price.value;
-    this.property.BuiltArea = this.BuiltArea.value;
-    this.property.Address = this.Address.value;
+    this.property.sellRent = +this.sellRent.value;
+    this.property.bhk = this.bhk.value;
+    this.property.pType = this.pType.value;
+    this.property.name = this.name.value;
+    this.property.city = this.city.value;
+    this.property.fType = this.fType.value;
+    this.property.price = this.price.value;
+    this.property.builtArea = this.builtArea.value;
+    this.property.address = this.address.value;
   }
    allTabsValid(): boolean {
-    if (this.BasicInfo.invalid) {
+    if (this.basicInfo.invalid) {
       this.formTabs.tabs[0].active = true;
       return false;
     }
 
-    if (this.PriceInfo.invalid) {
+    if (this.priceInfo.invalid) {
       this.formTabs.tabs[1].active = true;
       return false;
     }
 
-    if (this.AddressInfo.invalid) {
+    if (this.addressInfo.invalid) {
       this.formTabs.tabs[2].active = true;
       return false;
     }

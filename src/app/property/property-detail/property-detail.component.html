@@ -1,46 +1,46 @@
 <div class="row shadow">
   <div class="col-sm-4 p-0">
     <div class="card">
-    <div class="card-img-wrapper">
-    <img *ngIf="property.Image" class="card-img-top" src="{{property.Image}}">
-    <img *ngIf="!property.Image" class="card-img-top" src="">
-    </div>
-    <div class="card-body">
-        <h1 class="card-title">{{property.Name}}</h1>
+      <div class="card-img-wrapper">
+        <img *ngIf="property.Image" class="card-img-top" src="{{property.Image}}">
+        <img *ngIf="!property.Image" class="card-img-top" src="">
+      </div>
+      <div class="card-body">
+        <h1 class="card-title">{{property.name}}</h1>
         <div>
-          <strong>{{property.BHK}} -комн {{property.PType}} | {{property.Price}}〒</strong>
+          <strong>{{property.bhk}} -комн {{property.pType}} | {{property.price}}〒</strong>
         </div>
         <div>
-          <strong>{{property.City}}</strong>
+          <strong>{{property.city}}</strong>
         </div>
         <hr>
         <div>
           <strong>Площадь: </strong>
-          {{property.BuiltArea}}м²
+          {{property.builtArea}}м²
         </div>
         <hr>
         <div>
           <strong>Описание: </strong>
-          {{property.Description}}
+          {{property.description}}
         </div>
-    </div>
-    <div class="card-footer">
-      <div class="btn-group d-flex">
-      <button class="btn btn-primary">Нравится</button>
-      <button class="btn btn-success">Написать сообщение</button>
       </div>
-    </div>
+      <div class="card-footer">
+        <div class="btn-group d-flex">
+          <button class="btn btn-primary">Нравится</button>
+          <button class="btn btn-success">Написать сообщение</button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="col-sm-8 p-0">
-      <tabset>
-        <tab heading="Фотографии">
-          <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
-        </tab>
-        <tab heading="Контакты">
-          <h1>Контактные данные</h1>
-          Зарегистрируйтесь или войдите Ваш аккаунт, чтобы увидеть данные
-        </tab>
-      </tabset>
+    <tabset>
+      <tab heading="Фотографии">
+        <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+      </tab>
+      <tab heading="Контакты">
+        <h1>Контактные данные</h1>
+        Зарегистрируйтесь или войдите Ваш аккаунт, чтобы увидеть данные
+      </tab>
+    </tabset>
   </div>
 </div>

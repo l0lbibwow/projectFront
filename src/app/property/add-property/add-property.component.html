@@ -8,114 +8,114 @@
         <form (ngSubmit)='onSubmit()' [formGroup]="addPropertyForm">
           <div class="tab-panel">
             <tabset class="member-tabset" #formTabs>
-              <tab heading="Оснавная информация" formGroupName="BasicInfo">
+              <tab heading="Оснавная информация" formGroupName="basicInfo">
                 <div class="form-group col-12">
                   <p>Я хотел бы</p>
-                  <div class="btn-group" btnRadioGroup formControlName="SellRent">
+                  <div class="btn-group" btnRadioGroup formControlName="sellRent">
                     <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0" role="button"
-                      name="SellRent">Продажа</label>
+                      name="sellRent">Продажа</label>
                     <label class="btn btn-outline-primary" btnRadio=2 tabindex="0" role="button"
-                      name="SellRent">Аренда</label>
+                      name="sellRent">Аренда</label>
                   </div>
-                  <div class="error-block" *ngIf="SellRent.invalid && nextClicked">
+                  <div class="error-block" *ngIf="sellRent.invalid && nextClicked">
                     Пожалуйста, выберите продать или арендовать
                   </div>
                 </div>
 
                 <div class="form-group col-12">
                   <p>Количество комнат</p>
-                  <div class="btn-group" btnRadioGroup formControlName="BHK" [(ngModel)]="propertyView.BHK" name="BHK">
+                  <div class="btn-group" btnRadioGroup formControlName="bhk" [(ngModel)]="propertyView.bhk" name="bhk">
                     <label *ngFor="let bhk of [1,2,3,4]" class="btn btn-outline-primary mr-2" [btnRadio]="bhk"
-                      tabindex="0" role="button" name="BHK">
+                      tabindex="0" role="button" name="bhk">
                       {{bhk}}
                     </label>
                   </div>
-                  <div class="error-block" *ngIf="BHK.invalid && nextClicked">
+                  <div class="error-block" *ngIf="bhk.invalid && nextClicked">
                     Пожалуйста выберите количество комнат
                   </div>
                 </div>
 
                 <div class="form-group col-12">
                   <p>Тип недвижимости</p>
-                  <div class="btn-group" btnRadioGroup formControlName='PType' [(ngModel)]="propertyView.PType">
+                  <div class="btn-group" btnRadioGroup formControlName='pType' [(ngModel)]="propertyView.pType">
                     <label *ngFor="let ptype of propertyTypes" class="btn btn-outline-primary mr-2" [btnRadio]="ptype"
                       tabindex="0" role="button" name="PropType">{{ptype}}
                     </label>
                   </div>
-                  <div class="error-block" *ngIf="PType.invalid && nextClicked">
-                   Пожалуйста выберите тип дома
+                  <div class="error-block" *ngIf="pType.invalid && nextClicked">
+                    Пожалуйста выберите тип дома
                   </div>
                 </div>
 
                 <div class="form-group col-12">
                   <p>Тип мебели</p>
-                  <div class="btn-group" btnRadioGroup formControlName="FType" [(ngModel)]="propertyView.FType">
+                  <div class="btn-group" btnRadioGroup formControlName="fType" [(ngModel)]="propertyView.fType">
                     <label *ngFor="let ftype of furnishTypes" class="btn btn-outline-primary mr-2" [btnRadio]="ftype"
                       tabindex="0" role="button" name="FurnishType">
                       {{ftype}}
                     </label>
                   </div>
-                  <div class="error-block" *ngIf="FType.invalid && nextClicked">
-                  Пожалуйста, выберите тип мебели
+                  <div class="error-block" *ngIf="fType.invalid && nextClicked">
+                    Пожалуйста, выберите тип мебели
                   </div>
                 </div>
 
                 <div class="form-group col-12">
                   <label>Строиться/Используется/В разработке</label>
-                  <input type="text" class="form-control" ngModel formControlName="Name"
-                    [(ngModel)]="propertyView.Name">
-                  <div class="error-block" *ngIf="Name.invalid && (nextClicked || Name.touched)">
+                  <input type="text" class="form-control" ngModel formControlName="name"
+                    [(ngModel)]="propertyView.name">
+                  <div class="error-block" *ngIf="name.invalid && (nextClicked || name.touched)">
                     Пожалуйста заполните данное поле
                   </div>
                 </div>
 
                 <div class="form-group col-12">
                   <label>Город</label>
-                  <select type="text" class="form-control" formControlName="City" [(ngModel)]="propertyView.City">
-                  <option value="">Выберите город</option>
+                  <select type="text" class="form-control" formControlName="city" [(ngModel)]="propertyView.city">
+                    <option value="">Выберите город</option>
                     <option *ngFor="let city of cityList" value={{city.name}}>
-                    {{city.name}}
-                  </option>
-                  <option value="Pavlodar">Pavlodar</option>
+                      {{city.name}}
+                    </option>
+                    <option value="Pavlodar">Pavlodar</option>
                   </select>
-                  <div class="error-block" *ngIf="City.invalid && (nextClicked || City.touched)">
+                  <div class="error-block" *ngIf="city.invalid && (nextClicked || city.touched)">
                     Пожалуйста выберите город
                   </div>
                 </div>
 
                 <div class="form-group col-12">
                   <button type="button" class="btn btn-primary btn-block"
-                    (click)="selectTab(1, BasicInfo.valid)">Вперед</button>
+                    (click)="selectTab(1, basicInfo.valid)">Вперед</button>
                 </div>
               </tab>
 
               <tab heading="Цена и площадь" formGroupName="PriceInfo">
                 <div class="form-group col-12">
-                  <label *ngIf="SellRent.value==1">Цена (KZT)</label>
-                  <label *ngIf="SellRent.value==2">Аренда (KZT)</label>
-                  <input type="text" class="form-control" formControlName="Price" [(ngModel)]="propertyView.Price">
-                  <div class="error-block" *ngIf="Price.invalid && (nextClicked || Price.touched)">
+                  <label *ngIf="sellRent.value==1">Цена (KZT)</label>
+                  <label *ngIf="sellRent.value==2">Аренда (KZT)</label>
+                  <input type="text" class="form-control" formControlName="price" [(ngModel)]="propertyView.price">
+                  <div class="error-block" *ngIf="price.invalid && (nextClicked || price.touched)">
                     Пожалуйста выберите
-                    <span *ngIf="SellRent.value==1;else ShowRent">Цена</span>
+                    <span *ngIf="sellRent.value==1;else ShowRent">Цена</span>
                     <ng-template #ShowRent>rent</ng-template>
                   </div>
                 </div>
 
                 <div class="form-group col-12">
                   <label>Площадь дома (м²)</label>
-                  <input type="text" class="form-control" [(ngModel)]="propertyView.BuiltArea"
+                  <input type="text" class="form-control" [(ngModel)]="propertyView.builtArea"
                     formControlName="BuiltArea">
-                  <div class="error-block" *ngIf="BuiltArea.invalid && nextClicked">
+                  <div class="error-block" *ngIf="builtArea.invalid && nextClicked">
                     Пожалуйста укажите площадь
                   </div>
                 </div>
 
                 <div class="form-group col-12">
                   <button type="button" class="btn btn-primary btn-block"
-                    (click)="selectTab(2, PriceInfo.valid)">Вперед</button>
+                    (click)="selectTab(2, priceInfo.valid)">Вперед</button>
 
                   <button type="button" class="btn btn-primary btn-block"
-                    (click)="selectTab(0, PriceInfo.valid)">Назад</button>
+                    (click)="selectTab(0, priceInfo.valid)">Назад</button>
                 </div>
               </tab>
 
@@ -123,18 +123,18 @@
 
                 <div class="form-group col-12">
                   <label>Ваш Адрес</label>
-                  <input type="text" class="form-control" formControlName="Address">
-                  <div class="error-block" *ngIf="Address.invalid && (nextClicked || Address.touched)">
-                   Пожалуйста укажите Ваш адрес
+                  <input type="text" class="form-control" formControlName="address">
+                  <div class="error-block" *ngIf="address.invalid && (nextClicked || address.touched)">
+                    Пожалуйста укажите Ваш адрес
                   </div>
                 </div>
 
                 <div class="form-group col-12">
                   <button type="button" class="btn btn-primary btn-block"
-                    (click)="selectTab(3, AddressInfo.valid)">Вперед</button>
+                    (click)="selectTab(3, addressInfo.valid)">Вперед</button>
 
                   <button type="button" class="btn btn-primary btn-block"
-                    (click)="selectTab(1, AddressInfo.valid)">Назад</button>
+                    (click)="selectTab(1, addressInfo.valid)">Назад</button>
                 </div>
               </tab>
 
