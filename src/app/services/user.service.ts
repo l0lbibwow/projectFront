@@ -30,10 +30,6 @@ export class UserService {
         'Content-Type': 'application/json'
       })
     }).pipe(catchError(this.handleError));
-   /*  if (localStorage.getItem('newUser')) {
-      newProp = [user, ...JSON.parse(localStorage.getItem('newUser'))];
-    }
-    localStorage.setItem('newUser', JSON.stringify(newProp)); */
   }
   updateUser(user: User): Observable<void> {
     return this.http.put<void>(`${this.baseUrl}/${user.id}`, user, {
@@ -41,15 +37,6 @@ export class UserService {
         'Content-Type': 'application/json'
       })
     }).pipe(catchError(this.handleError));
-
-/*     let Users = this.getUsers();
-    Users = Users.map( u => {
-      if (u.Id !== user.Id) {
-        return u;
-      }
-      return user;
-    });
-    localStorage.setItem('newUser', JSON.stringify(Users)); */
   }
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl);
