@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { User } from 'src/app/shared/user';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-
+import { catchError} from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
   constructor(private http: HttpClient) { }
-  baseUrl = 'http://localhost:3000/users';
+  baseUrl = environment.baseUrl;
   getUser(id: number): Observable<User> {
-    return this.http.get<User>(`${this.baseUrl}/${id}`)
+    return this.http.get<User>(`${this.baseUrl}/users/${id}`)
     .pipe(catchError(this.handleError));
   }
   private handleError(errorResponse: HttpErrorResponse){
@@ -25,21 +25,21 @@ export class UserService {
   }
 
   addUser(user: User): Observable<User>  {
-    return this.http.post<User>(this.baseUrl, user, {
+    return this.http.post<User>(`${this.baseUrl}/users`, user, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     }).pipe(catchError(this.handleError));
   }
   updateUser(user: User): Observable<void> {
-    return this.http.put<void>(`${this.baseUrl}/${user.id}`, user, {
+    return this.http.put<void>(`${this.baseUrl}/users/${user.id}`, user, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     }).pipe(catchError(this.handleError));
   }
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.baseUrl);
+    return this.http.get<User[]>(`${this.baseUrl}/users`);
   }
   newUserID(): number{
     if (localStorage.getItem('UserPid')) {

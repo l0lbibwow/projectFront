@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { Property } from '../shared/property';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { catchError } from 'rxjs/operators';
 export class HousingService {
 
   constructor(private http: HttpClient) { }
-
+  baseUrl = environment.baseUrl;
   getAllCities(): Observable<string[]>{
     return this.http.get<string[]>('http://localhost:5000/api/city');
   }
@@ -29,7 +30,7 @@ export class HousingService {
     return throwError('There is a problem with the service.');
   }
   getAllProperties(SellRent?: number): Observable<Property[]>{
-    return this.http.get('http://localhost:3000/properties').pipe(
+    return this.http.get(`${this.baseUrl}/properties`).pipe(
       map(data => {
         const propertiesArray: Array<Property> = [];
         for (const id in data){
@@ -44,10 +45,10 @@ export class HousingService {
         return propertiesArray;
       })
    ).pipe(catchError(this.handleError));
-    return this.http.get<Property[]>('http://localhost:3000/properties');
+    return this.http.get<Property[]>(`${this.baseUrl}/properties`);
   }
   addProperty(property: Property): Observable<Property> {
-    return this.http.post<Property>('http://localhost:3000/properties', property, {
+    return this.http.post<Property>(`${this.baseUrl}/properties`, property, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
