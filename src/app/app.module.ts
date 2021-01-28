@@ -11,7 +11,6 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { routerComponents } from './app-routing.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PropertyCardComponent } from './property/property-card/property-card.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { HousingService } from './services/housing.service';
 import { UserService } from './services/user.service';
@@ -22,22 +21,16 @@ import { ProductDetailResolverService } from './property/property-detail/product
 import { FilterPipe } from './Pipes/filter.pipe';
 import { SortPipe } from './Pipes/sort.pipe';
 import { BoldDirective } from './bold.directive';
-import { UsersComponent } from './user/users/users.component';
-import { UserCardComponent } from './user/user-card/user-card.component';
-import { UserDetailComponent } from './user/user-detail/user-detail.component';
+
 import { AdminOrUserDirective } from './admin-or-user.directive';
 @NgModule({
   declarations: [
     AppComponent,
-    PropertyCardComponent,
     MenuBarComponent,
     routerComponents,
     FilterPipe,
     SortPipe,
     BoldDirective,
-    UsersComponent,
-    UserCardComponent,
-    UserDetailComponent,
     AdminOrUserDirective
   ],
   imports: [
@@ -54,6 +47,9 @@ import { AdminOrUserDirective } from './admin-or-user.directive';
     NgxGalleryModule
   ],
   providers: [HousingService, UserService, AlertifyService, AuthService, ProductDetailResolverService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+    AdminOrUserDirective
+  ]
 })
 export class AppModule { }

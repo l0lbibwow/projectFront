@@ -8,44 +8,45 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a appBold class="nav-link" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active" routerLink="/">Продажа <span class="sr-only">(current)</span></a>
+        <a appBold class="nav-link" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active"
+          routerLink="/">Продажа <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a appBold class="nav-link"  routerLinkActive="active" routerLink="/rent-property">Аренда</a>
+        <a appBold class="nav-link" routerLinkActive="active" routerLink="/rent-property">Аренда</a>
       </li>
       <li class="nav-item">
         <a appBold class="nav-link" routerLinkActive="active" routerLink="/add-property">Подать объявление</a>
       </li>
-      <li  class="nav-item">
-        <a appBold appAdminOrUser class="nav-link" routerLinkActive="active" routerLink="user/users">Пользователи</a>
+      <li class="nav-item">
+        <a appBold appAdminOrUser class="nav-link" routerLinkActive="active" routerLink="user">Пользователи</a>
       </li>
     </ul>
-      <ul class="nav navbar-nav  my-2 my-lg-0">
-        <li *ngIf="!loggedIn()" class="nav-item">
-          <a appBold class="nav-link" routerLink="user/register" routerLinkActive="active">Регистрация</a>
-        </li>
-        <li *ngIf="!loggedIn()" class="nav-item">
-          <a appBold class="nav-link" routerLink="user/login" routerLinkActive="active">Войти</a>
-        </li>
-          <div *ngIf="loggedIn()" class="dropdown mr-2" dropdown>
-              <a href="#" class="dropdown-toggle text-light" dropdownToggle (click)="false">
-                Добро пожаловать {{loggedinUser}}
-              </a>
-            <div class="dropdown-menu" *dropdownMenu>
-                <a href="#" class="dropdown-item">
-                  <i class="fas fa-tachometer-alt"></i>Просмотр панели мониторинга
-                </a>
-                <a href="#" class="dropdown-item">
-                  <i class="fas fa-user-circle"></i>Мой профиль
-                </a>
-                <a href="#" class="dropdown-item">
-                  <i class="fas fa-key"></i>Изменить пароль
-                </a>
-                <a (click)='onLogout()' class="dropdown-item">
-                  <i class="fas fa-sign-out-alt"></i>Выйти
-                </a>
-            </div>
-          </div>
-      </ul>
+    <ul class="nav navbar-nav  my-2 my-lg-0">
+      <li *ngIf="!loggedIn()" class="nav-item">
+        <a appBold class="nav-link" routerLink="user/register" routerLinkActive="active">Регистрация</a>
+      </li>
+      <li *ngIf="!loggedIn()" class="nav-item">
+        <a appBold class="nav-link" routerLink="user/login" routerLinkActive="active">Войти</a>
+      </li>
+      <div *ngIf="loggedIn()" class="dropdown mr-2" dropdown>
+        <a href="#" class="dropdown-toggle text-light" dropdownToggle (click)="false">
+          Добро пожаловать {{loggedinUser}}
+        </a>
+        <div class="dropdown-menu" *dropdownMenu>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-tachometer-alt"></i>Просмотр панели мониторинга
+          </a>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-user-circle"></i>Мой профиль
+          </a>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-key"></i>Изменить пароль
+          </a>
+          <a (click)='onLogout()' class="dropdown-item">
+            <i class="fas fa-sign-out-alt"></i>Выйти
+          </a>
+        </div>
+      </div>
+    </ul>
   </div>
 </nav>

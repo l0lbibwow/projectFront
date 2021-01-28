@@ -6,24 +6,25 @@ import { PropertyListComponent } from './property/property-list/property-list.co
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
-import { ProductDetailResolverService } from './property/property-detail/product-detail-resolver.service';
 import { UsersComponent } from './user/users/users.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
+import { PropertyCardComponent } from './property/property-card/property-card.component';
 const routes: Routes = [
-  { path: '', component: PropertyListComponent},
-  {path: 'rent-property', component: PropertyListComponent},
-  {path: 'property-detail/:id', component: PropertyDetailComponent, resolve: {prp: ProductDetailResolverService}},
-  {path: 'user/users/user-detail/:id', component: UserDetailComponent},
-  { path: 'add-property', component: AddPropertyComponent},
-   {path: 'user/login', component: UserLoginComponent},
-  { path: 'user/register', component: UserRegisterComponent},
-  { path: 'user/users', component: UsersComponent},
-  { path: '**', component: PageNotFoundComponent}
+  {
+    path: '',
+    loadChildren: () => import('src/app/property/property-routing.module').then(m => m.PropertyRoutingModule)
+  },
+  {
+    path: 'user',
+    loadChildren: () => import('src/app/user/user-routing.module').then(m => m.UserRoutingModule)},
+  {
+    path: '**', component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { };
-export const routerComponents = [AddPropertyComponent, PropertyDetailComponent, PropertyListComponent, PageNotFoundComponent, UserLoginComponent, UserRegisterComponent];
+export class AppRoutingModule { }
+export const routerComponents = [PropertyCardComponent, UserDetailComponent, UsersComponent, AddPropertyComponent, PropertyDetailComponent, PropertyListComponent, PageNotFoundComponent, UserLoginComponent, UserRegisterComponent];
