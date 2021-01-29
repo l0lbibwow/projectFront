@@ -9,6 +9,7 @@ import { UserRegisterComponent } from './user/user-register/user-register.compon
 import { UsersComponent } from './user/users/users.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { PropertyCardComponent } from './property/property-card/property-card.component';
+import { UserCardComponent } from './user/user-card/user-card.component';;
 const routes: Routes = [
   {
     path: '',
@@ -27,4 +28,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routerComponents = [PropertyCardComponent, UserDetailComponent, UsersComponent, AddPropertyComponent, PropertyDetailComponent, PropertyListComponent, PageNotFoundComponent, UserLoginComponent, UserRegisterComponent];
+export const routerComponents = [UserCardComponent, PropertyCardComponent, UserDetailComponent, UsersComponent, AddPropertyComponent, PropertyDetailComponent, PropertyListComponent, PageNotFoundComponent, UserLoginComponent, UserRegisterComponent];

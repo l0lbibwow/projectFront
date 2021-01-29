@@ -18,10 +18,9 @@ import { AlertifyService } from './services/alertify.service';
 import { AuthService } from './services/auth.service';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { ProductDetailResolverService } from './property/property-detail/product-detail-resolver.service';
-import { FilterPipe } from './Pipes/filter.pipe';
-import { SortPipe } from './Pipes/sort.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
+import { SortPipe } from './pipes/sort.pipe';
 import { BoldDirective } from './bold.directive';
-
 import { AdminOrUserDirective } from './admin-or-user.directive';
 @NgModule({
   declarations: [
